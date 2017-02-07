@@ -2,8 +2,15 @@ var express = require('express');
 var app = express();
 var port = 8080;
 
-app.get('/', function (req, res) {
-    res.send('hue');
+app.get('/:time', function (req, res) {
+    var time = new Date(req.params.time);
+    var timestamp = {};
+    var unixtime = time.getTime();
+    if (unixtime) {
+       timestamp.unix = unixtime;
+    }
+
+    res.send(timestamp);
 });
 
 
